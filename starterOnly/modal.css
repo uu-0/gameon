@@ -72,6 +72,30 @@ img {
   display: none;
 }
 
+.thanks{
+  display: none;
+  height: 400px;
+}
+
+.thanks .close-btn{
+  padding: 8px 35px;
+  margin-right: 30%;
+  margin-left: 30%;
+  margin-top: 100px;
+  text-align: center;
+  border-radius: 7px;
+  font-size: 1rem;
+  background: #fe142f;
+}
+
+.thanks-txt{
+  margin-top: 250px;
+  margin-bottom: 250px;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 300;
+}
+
 @media screen and (max-width: 768px) {
   .topnav a {display: none;}
   .topnav a.icon {
