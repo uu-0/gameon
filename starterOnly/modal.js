@@ -15,6 +15,7 @@ const btnSubmit = document.querySelector(".btn-submit");
 const btnClose = document.querySelector('.close-btn');
 const inscriptionForm = document.querySelector("#inscription-form");
 const thanksBlock = document.querySelector(".thanks");
+const btnCross = document.querySelector(".close");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -24,6 +25,8 @@ btnSubmit.addEventListener("click", validate);
 
 //fermeture remerciments via btn
 btnClose.addEventListener("click", closeModal);
+
+btnCross.addEventListener("click", closeModal);
 
 // launch modal form
 function launchModal() {
@@ -113,16 +116,16 @@ function validate(e) {
   if (!tournamentChoice) {
     showValidationError(formData[5], "Veuillez sélectionner un tournoi");
   } else {
-    //séléction tournois validé
+    //séléction tournois validée
     hideValidationError(formData[5]);
   }
 
-  //validation condition d'utilisation
+  //validation conditions d'utilisations
   let conditionsOfUseCheckbox = document.querySelector("#checkbox1");
   if (!conditionsOfUseCheckbox.checked) {
     showValidationError(formData[6], "Veuillez lire et accepter les conditions d'utilisation");
   } else {
-    //condition d'utilisation valides
+    //conditions d'utilisations validées
     hideValidationError(formData[6]);
   }
 
