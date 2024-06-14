@@ -110,9 +110,8 @@ function validate(e) {
     hideValidationError(formData[4]);
   }
 
-  //validation séléction tournois
-  let tournamentChoice = document.querySelector("input[type=radio]:checked").value;
-  console.log(tournamentChoice);
+  //validation sélection tournois
+  let tournamentChoice = document.querySelector("input[type=radio]:checked");
   if (!tournamentChoice) {
     showValidationError(formData[5], "Veuillez sélectionner un tournoi");
   } else {
@@ -120,7 +119,7 @@ function validate(e) {
     hideValidationError(formData[5]);
   }
 
-  //validation conditions d'utilisations
+  //validation conditions d'utilisation
   let conditionsOfUseCheckbox = document.querySelector("#checkbox1");
   if (!conditionsOfUseCheckbox.checked) {
     showValidationError(formData[6], "Veuillez lire et accepter les conditions d'utilisation");
@@ -132,8 +131,7 @@ function validate(e) {
   //envoi du formulaire s'il n'y a plus d'erreur de validation, affiche les remerciments
   let visibleErrors = document.querySelectorAll("[data-error-visible=true]");
   if (visibleErrors.length === 0) {
-    /*inscriptionForm.submit();*/
-    console.log('le formulaire a été envoyé bg');
+    inscriptionForm.submit();
     launchThanks();
   }
 }
