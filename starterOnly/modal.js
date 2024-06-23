@@ -65,73 +65,101 @@ function hideValidationError(element) {
 
 //validation du formulaire, si valide affichage des remerciments
 function validate(e) {
-
+  //empêche le form de se soumettre automatiquement
   e.preventDefault();
 
   //validation prénom
   let firstName = document.querySelector("#first").value;
+  //le champs n'est pas vide
   if (firstName === "") {
     showValidationError(formData[0], "Le prénom est requis");
-  } else if (firstName.length < 2) {
+  }//le champs a plus de deux caractères
+  else if (firstName.length < 2) {
     showValidationError(formData[0], "Le prénom doit comporter au moins 2 caractères");
-  } else {
-    //prénom validé
+  }//prénom validé
+  else {
     hideValidationError(formData[0]);
   }
 
   //validation nom
   let lastName = document.querySelector("#last").value;
+  //le champs n'est pas vide
   if (lastName === "") {
     showValidationError(formData[1], "Le nom est requis");
-  } else if (lastName.length < 2) {
+  }//le champs a plus de deux caractères
+  else if (lastName.length < 2) {
     showValidationError(formData[1], "Le nom doit comporter au moins 2 caractères");
-  } else {
-    //nom validé
+  }//nom validé
+  else {
     hideValidationError(formData[1]);
   }
 
   //validation email
   let email = document.querySelector("#email").value;
+  //le champs n'est pas vide
   if (email === "") {
     showValidationError(formData[2], "Une adresse email est requise");
-  } else if (!validateEmailAddress(email)) {
+  } //le champs est valide en fonction de validateEmailAddress()
+  else if (!validateEmailAddress(email)) {
     showValidationError(formData[2], "Cette adresse e-mail n'est pas valide");
-  } else {
-    //email validé
+  }//email validé
+   else {
     hideValidationError(formData[2]);
+  }
+
+  //validation date de naissance
+  let dateOfBirth = new Date(document.querySelector("#birthdate").value); //valeurs du champs input #birthdate converti en type Date
+  const today = new Date(); //date d'ajd
+  const maxDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate()); //date maximale autorisée (-100 ans à partir de la date actuelle)
+
+  //le champs n'est pas vide
+  if (dateOfBirth === "") {
+    showValidationError(formData[3], "Veuillez entrer votre date de naissance");
+  }//le champs n'est pas valide (pas de type date)
+  else if (isNaN(dateOfBirth.getTime())) {
+    showValidationError(formData[3], "Veuillez entrer une date de naissance valide");
+  }//le champs n'est pas valide (date trop vieille ou date future)
+  else if (dateOfBirth < maxDate || dateOfBirth > today ){
+    showValidationError(formData[3], "Veuillez entre une date de naissance valide");
+  }//date de naissance validée
+  else{
+    hideValidationError(formData[3]);
   }
 
   //validation nombre de tournois
   let nbOfTournaments = document.querySelector("#quantity").value;
+  //le champs n'est pas vide
   if (nbOfTournaments === "") {
     showValidationError(formData[4], "Veuillez sélectionner un nombre");
-  } else {
-    //nombre de tournois validé
+  }//nombre de tournois validé
+  else {
     hideValidationError(formData[4]);
   }
 
   //validation sélection tournois
   let tournamentChoice = document.querySelector("input[type=radio]:checked");
+  //champs non sélectionné
   if (!tournamentChoice) {
     showValidationError(formData[5], "Veuillez sélectionner un tournoi");
-  } else {
-    //séléction tournois validée
+  }//séléction tournois validée
+  else {
     hideValidationError(formData[5]);
   }
 
   //validation conditions d'utilisation
   let conditionsOfUseCheckbox = document.querySelector("#checkbox1");
+  //champs sélectionné
   if (!conditionsOfUseCheckbox.checked) {
     showValidationError(formData[6], "Veuillez lire et accepter les conditions d'utilisation");
-  } else {
-    //conditions d'utilisations validées
+  }//conditions d'utilisations validées
+  else {
     hideValidationError(formData[6]);
   }
 
   //envoi du formulaire s'il n'y a plus d'erreur de validation, affiche les remerciments
   let visibleErrors = document.querySelectorAll("[data-error-visible=true]");
   if (visibleErrors.length === 0) {
-    inscriptionForm.submit();
     launchThanks();
+    /*inscriptionForm.submit();*/
   }
 }
