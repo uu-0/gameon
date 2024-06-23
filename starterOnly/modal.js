@@ -117,10 +117,10 @@ function validate(e) {
     showValidationError(formData[3], "Veuillez entrer votre date de naissance");
   }//le champs n'est pas valide (pas de type date)
   else if (isNaN(dateOfBirth.getTime())) {
-    showValidationError(formData[3], "Veuillez entrer une date de naissance valide");
+    showValidationError(formData[3], "Veuillez entrer votre date de naissance");
   }//le champs n'est pas valide (date trop vieille ou date future)
   else if (dateOfBirth < maxDate || dateOfBirth > today ){
-    showValidationError(formData[3], "Veuillez entre une date de naissance valide");
+    showValidationError(formData[3], "Veuillez entrer une date de naissance valide");
   }//date de naissance validée
   else{
     hideValidationError(formData[3]);
